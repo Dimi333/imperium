@@ -22,6 +22,16 @@ const routes: Routes = [
 		path: 'story',
 		loadChildren: () => import('./story/story.module').then(m => m.StoryModule),
 		component: MainLayoutComponent
+	},
+	{
+		path: 'settings',
+		loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule),
+		component: MainLayoutComponent
+	},
+	{
+		path: 'about',
+		loadChildren: () => import('./about/about.module').then(m => m.AboutModule),
+		component: MainLayoutComponent
 	}
 ];
 
