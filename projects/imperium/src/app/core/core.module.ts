@@ -8,7 +8,7 @@ import { ImpStoreModule } from './imp-store/imp-store.module';
   imports: [
 	CommonModule,
 	TemplatesModule,
-	ImpStoreModule
+	ImpStoreModule,
   ],
   exports: [
 	TemplatesModule,

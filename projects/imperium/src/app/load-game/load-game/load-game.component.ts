@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loginName } from './../../core/imp-store/login.actions';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'imp-load-game',
@@ -10,6 +11,9 @@ import { loginName } from './../../core/imp-store/login.actions';
 })
 export class LoadGameComponent implements OnInit {
 	public name$: Observable<string>;
+	public loginForm: FormGroup = new FormGroup({
+		loginName: new FormControl('')
+	});
 	
 	constructor(private store: Store<{ login: string }>) { 
 		this.name$ = store.pipe(select('login'));
@@ -19,7 +23,7 @@ export class LoadGameComponent implements OnInit {
 	}
 
 	public login():void {
-		this.store.dispatch(loginName());
+		this.store.dispatch(loginName({ name: this.loginForm.get("loginName").value }));
 	}
 
 }

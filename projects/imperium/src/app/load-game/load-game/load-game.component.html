@@ -1,4 +1,8 @@
-<p>load-game works!</p>
+<h1>Zadaj svoje meno:</h1>
 <p>{{ name$ | async }}</p>
+
+<form [formGroup]="loginForm">
+	<input type="text" formControlName="loginName">
+</form>
 
 <button (click)="login()">Prihlás</button>

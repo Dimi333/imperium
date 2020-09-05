@@ -3,11 +3,9 @@ import { loginName } from './login.actions';
 
 export const initialState = "";
 
-const _loginReducer = createReducer(
+export const loginReducer = createReducer(
 	initialState,
-	on(loginName, (state) => state + "Jaro")
+	on(loginName, (state, login) => login.name)
 );
 
-export function loginReducer(state: any, action: any) {
-	return _loginReducer(state, action)
-}
+
