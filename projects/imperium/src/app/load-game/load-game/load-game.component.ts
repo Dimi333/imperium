@@ -23,7 +23,7 @@ export class LoadGameComponent implements OnInit {
 	}
 
 	public login():void {
-		this.store.dispatch(loginName({ name: this.loginForm.get("loginName").value }));
+		this.store.dispatch(loginName({ name: this.loginForm.get("loginName")?.value }));
 	}
 
 }
