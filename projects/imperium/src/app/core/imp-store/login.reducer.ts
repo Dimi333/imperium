@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { loginName } from './login.actions';
+import { loginName, loginSuccess } from './login.actions';
 
 export const initialState = "";
 
@@ -8,4 +8,8 @@ export const loginReducer = createReducer(
 	on(loginName, (state, login) => login.name)
 );
 
+export const loginSuccessReducer = createReducer(
+	initialState,
+	on(loginSuccess, (state, login) => login.name)
+);
 
