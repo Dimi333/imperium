@@ -15,9 +15,31 @@ export class LoginEffects {
 
 	loginCharacter = createEffect(() => this.action$.pipe(
 		ofType('[Login Component] Login starts'),
+		mergeMap(() => this._ls.loadCharacter("Jaro")
+			 .pipe(
+				map(character => {
+					if(character === "Jaro") {
+						return { type: "[Login component] Login success", payload: character}
+					} else {
+						return { type: "[Login component] Login unsuccess" }
+					}
+				}),
+				catchError(() => EMPTY)
+			 ))
+		)
+	);
+
+	createCharacter = createEffect(() => this.action$.pipe(
+		ofType('[Login Component] Login create'),
 		mergeMap(() => this._ls.saveCharacter("Jaro")
 			 .pipe(
-				map(character => ({ type: "[Login component] Login success", payload: character})),
+				map(character => {
+					if(character === "Jaro") {
+						return { type: "[Login component] Login success", payload: character}
+					} else {
+						return { type: "[Login component] Login unsuccess" }
+					}
+				}),
 				catchError(() => EMPTY)
 			 ))
 		)

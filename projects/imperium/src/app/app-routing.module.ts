@@ -14,6 +14,11 @@ const routes: Routes = [
 		component: MainLayoutComponent
 	},
 	{
+		path: 'play-game',
+		loadChildren: () => import('./play-game/play-game.module').then(m => m.PlayGameModule),
+		component: MainLayoutComponent
+	},
+	{
 		path: 'load-game',
 		loadChildren: () => import('./load-game/load-game.module').then(m => m.LoadGameModule),
 		component: MainLayoutComponent
