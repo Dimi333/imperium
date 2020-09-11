@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
+import { Player } from './login.reducer';
 
-export const loginName = createAction('[Login Component] Login starts', props<{ name: string }>());
-export const loginCreate = createAction('[Login Component] Login create', props<{ name: string }>());
-export const loginSuccess = createAction('[Login Component] Login success', props<{ name: string }>());
+export const loginName = createAction('[Login Component] Login starts', props<{ login: Player }>());
+export const loginCreate = createAction('[Login Component] Login create', props<{ login: Player }>());
+export const loginSuccess = createAction('[Login Component] Login success', props<{ login: Player }>());

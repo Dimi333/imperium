@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loginCreate } from './../../core/imp-store/login.actions';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Player } from './../../core/imp-store/login.reducer';
 
 @Component({
 	selector: 'imp-new-game',
@@ -12,10 +13,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class NewGameComponent implements OnInit {
 	public name$: Observable<string>;
 	public loginForm: FormGroup = new FormGroup({
-		loginName: new FormControl('')
+		loginName: new FormControl(''),
+		loginPassword: new FormControl('')
 	});
 
-	constructor(private store: Store<{ login: string }>) {
+	constructor(private store: Store<{ login: string, password: string }>) {
 		this.name$ = store.pipe(select('login'));
 	}
 
@@ -23,6 +25,7 @@ export class NewGameComponent implements OnInit {
 	}
 
 	public login():void {
-		this.store.dispatch(loginCreate({ name: this.loginForm.get("loginName")?.value }));
+		const login = { name: this.loginForm.get("loginName")?.value, password: "heslo" };
+		this.store.dispatch(loginCreate({ login: login }));
 	}
 }

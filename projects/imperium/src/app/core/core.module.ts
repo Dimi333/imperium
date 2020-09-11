@@ -8,11 +8,9 @@ import { ImpStoreModule } from './imp-store/imp-store.module';
   imports: [
 	CommonModule,
 	TemplatesModule,
-	ImpStoreModule,
   ],
   exports: [
 	TemplatesModule,
-	ImpStoreModule
   ]
 })
 export class CoreModule { }
