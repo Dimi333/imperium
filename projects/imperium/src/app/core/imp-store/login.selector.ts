@@ -5,7 +5,7 @@ export interface AppState {
 	login: Player
 }
 
-export const selectFeature = (state: AppState) => state.login;
+export const selectFeature = createFeatureSelector<Player>('login');
 
 export const selectPlayerName = createSelector(
 	selectFeature,

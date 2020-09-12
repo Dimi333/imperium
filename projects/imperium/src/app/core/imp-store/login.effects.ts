@@ -4,6 +4,7 @@ import { EMPTY } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { LoginService } from './../login.service';
+import { Player } from './login.reducer';
 
 @Injectable()
 export class LoginEffects {
@@ -15,11 +16,11 @@ export class LoginEffects {
 
 	loginCharacter = createEffect(() => this.action$.pipe(
 		ofType('[Login Component] Login starts'),
-		mergeMap(() => this._ls.loadCharacter("Jaro")
+		mergeMap(({ login }) => this._ls.loadCharacter(login)
 			 .pipe(
-				map(character => {
-					if(character === "Jaro") {
-						return { type: "[Login component] Login success", payload: character}
+				map((isLoaded: boolean) => {
+					if(isLoaded) {
+						return { type: "[Login component] Login success" }
 					} else {
 						return { type: "[Login component] Login unsuccess" }
 					}
@@ -31,10 +32,10 @@ export class LoginEffects {
 
 	createCharacter = createEffect(() => this.action$.pipe(
 		ofType('[Login Component] Login create'),
-		mergeMap(() => this._ls.saveCharacter("Jaro")
+		mergeMap(({ login }) => this._ls.saveCharacter(login)
 			 .pipe(
-				map(character => {
-					if(character === "Jaro") {
+				map((character: Player) => {
+					if(character.name === "Jaro") {
 						return { type: "[Login component] Login success", payload: character}
 					} else {
 						return { type: "[Login component] Login unsuccess" }

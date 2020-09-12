@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { loginCreate } from './../../core/imp-store/login.actions';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Player } from './../../core/imp-store/login.reducer';
+import * as fromLoginSelector from './../../core/imp-store/login.selector';
 
 @Component({
 	selector: 'imp-new-game',
@@ -18,7 +19,7 @@ export class NewGameComponent implements OnInit {
 	});
 
 	constructor(private store: Store<{ login: string, password: string }>) {
-		this.name$ = store.pipe(select('login'));
+		this.name$ = this.store.pipe(select(fromLoginSelector.selectPlayerName));
 	}
 
 	ngOnInit(): void {

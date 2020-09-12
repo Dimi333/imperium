@@ -19,7 +19,7 @@ export class LoadGameComponent implements OnInit {
 	});
 	
 	constructor(private store: Store<{ name: string, password: string }>) { 
-		this.name$ = store.select(appState => appState.login.name);
+		this.name$ = this.store.pipe(select(fromLoginSelector.selectPlayerName));
 	}
 
 	ngOnInit(): void {
