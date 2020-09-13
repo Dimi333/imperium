@@ -26,7 +26,7 @@ export class LoadGameComponent implements OnInit {
 	}
 
 	public login():void {
-		const login: Player = { name: this.loginForm.get("loginName")?.value, password: "heslo" };
+		const login: Player = { name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
 
 		this.store.dispatch(loginName({ login: login }));
 	}
