@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription, Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { Player } from './../../imp-store/store';
+import * as fromLoginSelector from './../../imp-store/login.selector';
 
 @Component({
   selector: 'imp-left-menu',
   templateUrl: './left-menu.component.html',
   styleUrls: ['./left-menu.component.sass']
 })
-export class LeftMenuComponent implements OnInit {
+export class LeftMenuComponent implements OnInit, OnDestroy {
+	public isLoggedIn$: Observable<boolean>;
+	private _sub: Subscription;
 
-  constructor() { }
+	constructor(private store: Store<Player>, private router: Router) {
+		this.isLoggedIn$ = this.store.pipe(select(fromLoginSelector.selectPlayerLoggedIn));
+	}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
+	ngOnDestroy(): void {
+	}
 }

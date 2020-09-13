@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { loginName } from './../../core/imp-store/login.actions';
 import { FormControl, FormGroup } from '@angular/forms';
 import * as fromLoginSelector from './../../core/imp-store/login.selector';
@@ -12,8 +12,9 @@ import { Router } from '@angular/router';
   templateUrl: './load-game.component.html',
   styleUrls: ['./load-game.component.sass']
 })
-export class LoadGameComponent implements OnInit {
+export class LoadGameComponent implements OnInit, OnDestroy {
 	private _isLoggedIn$: Observable<boolean>;
+	private _sub: Subscription;
 	public loginForm: FormGroup = new FormGroup({
 		loginName: new FormControl(''),
 		loginPassword: new FormControl('')
@@ -21,10 +22,14 @@ export class LoadGameComponent implements OnInit {
 	
 	constructor(private store: Store<Player>, private router: Router) { 
 		this._isLoggedIn$ = this.store.pipe(select(fromLoginSelector.selectPlayerLoggedIn));
-		this._isLoggedIn$.subscribe((isLoggedIn:boolean) => isLoggedIn ? this.router.navigate(['/play-game']) : null);
 	}
 
 	ngOnInit(): void {
+	}
+
+	ngOnDestroy(): void {
+		if(this._sub)
+			this._sub.unsubscribe();
 	}
 
 	public login():void {
@@ -32,7 +37,7 @@ export class LoadGameComponent implements OnInit {
 
 		this.store.dispatch(loginName({ login: login }));
 
-
+		this._sub = this._isLoggedIn$.subscribe((isLoggedIn:boolean) => isLoggedIn ? this.router.navigate(['/play-game']) : null);
 	}
 
 }

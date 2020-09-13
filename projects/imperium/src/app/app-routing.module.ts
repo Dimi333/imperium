@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './core/templates/main-layout/main-layout.component';
+import { GameLayoutComponent } from './core/templates/game-layout/game-layout.component';
+import { MainGuardGuard } from './core/main-guard.guard';
 
 const routes: Routes = [
 	{
@@ -16,7 +18,8 @@ const routes: Routes = [
 	{
 		path: 'play-game',
 		loadChildren: () => import('./play-game/play-game.module').then(m => m.PlayGameModule),
-		component: MainLayoutComponent
+		component: GameLayoutComponent,
+		canActivate: [MainGuardGuard]
 	},
 	{
 		path: 'load-game',
@@ -37,6 +40,11 @@ const routes: Routes = [
 		path: 'about',
 		loadChildren: () => import('./about/about.module').then(m => m.AboutModule),
 		component: MainLayoutComponent
+	},
+	{
+		path: '**',
+		redirectTo: '',
+		pathMatch: 'full'
 	}
 ];
 
