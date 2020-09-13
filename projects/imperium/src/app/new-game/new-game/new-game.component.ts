@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loginCreate } from './../../core/imp-store/login.actions';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Player } from './../../core/imp-store/login.reducer';
+import { Player } from './../../core/imp-store/store';
 import * as fromLoginSelector from './../../core/imp-store/login.selector';
 
 @Component({
@@ -12,21 +12,19 @@ import * as fromLoginSelector from './../../core/imp-store/login.selector';
 	styleUrls: ['./new-game.component.sass']
 })
 export class NewGameComponent implements OnInit {
-	public name$: Observable<string>;
 	public loginForm: FormGroup = new FormGroup({
 		loginName: new FormControl(''),
 		loginPassword: new FormControl('')
 	});
 
-	constructor(private store: Store<{ login: string, password: string }>) {
-		this.name$ = this.store.pipe(select(fromLoginSelector.selectPlayerName));
+	constructor(private store: Store<Player>) {
 	}
 
 	ngOnInit(): void {
 	}
 
 	public login():void {
-		const login = { name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
+		const login = { loggedIn: false, name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
 		this.store.dispatch(loginCreate({ login: login }));
 	}
 }

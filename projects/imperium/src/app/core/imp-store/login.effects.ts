@@ -4,7 +4,7 @@ import { EMPTY } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { LoginService } from './../login.service';
-import { Player } from './login.reducer';
+import { Player } from './store';
 
 @Injectable()
 export class LoginEffects {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
-import { Player } from './imp-store/login.reducer';
+import { Player } from './imp-store/store';
 
 @Injectable({
   providedIn: 'root'

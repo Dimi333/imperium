@@ -1,12 +1,11 @@
-<h1>Zadaj svoje meno:</h1>
-<p>{{ name$ | async }}</p>
+<div class="p">
+	<h1>Načítaj hru</h1>
 
-<form [formGroup]="loginForm">
-	<input type="text" formControlName="loginName">
-	<input type="password" formControlName="loginPassword">
-</form>
+	<form [formGroup]="loginForm">
+		<input type="text" formControlName="loginName">
+		<br>
+		<input type="password" formControlName="loginPassword">
+	</form>
 
-<button (click)="login()">Prihlás</button>
-
-<p>Hraj hru</p>
-<button [routerLink]="['/play-game']">Prihlás</button>
+	<button (click)="login()">Prihlás</button>
+</div>

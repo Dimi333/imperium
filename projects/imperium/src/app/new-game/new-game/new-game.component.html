@@ -1,12 +1,12 @@
-<p>Nová hra</p>
+<div class="p">
+	<h1>Nová hra</h1>
 
-<h1>Zadaj meno svojej postavy:</h1>
-<p>{{ name$ | async }}</p>
+	<p>Zadaj meno svojej postavy:</p>
 
-<form [formGroup]="loginForm">
-	<input type="text" formControlName="loginName">
-	<input type="password" formControlName="loginPassword">
-</form>
+	<form [formGroup]="loginForm">
+		<input type="text" formControlName="loginName">
+		<input type="password" formControlName="loginPassword">
+	</form>
 
-<button (click)="login()">Prihlás</button>
-
+	<button (click)="login()">Prihlás</button>
+</div>
