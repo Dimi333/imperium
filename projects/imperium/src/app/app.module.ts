@@ -11,6 +11,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from './../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImpStoreModule } from './core/imp-store/imp-store.module';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ImpStoreModule } from './core/imp-store/imp-store.module';
 		maxAge: 25, // Retains last 25 states
 			logOnly: environment.production, // Restrict extension to log-only mode
 	}),
+		StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

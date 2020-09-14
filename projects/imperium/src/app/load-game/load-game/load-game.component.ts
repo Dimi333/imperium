@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { loginName } from './../../core/imp-store/login.actions';
+import { loginStarts } from './../../core/imp-store/login.actions';
 import { FormControl, FormGroup } from '@angular/forms';
 import * as fromLoginSelector from './../../core/imp-store/login.selector';
 import { Player } from './../../core/imp-store/store';
@@ -35,9 +35,9 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 	public login():void {
 		const login: Player = { loggedIn: false, name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
 
-		this.store.dispatch(loginName({ login: login }));
+		this.store.dispatch(loginStarts({ login: login }));
 
-		this._sub = this._isLoggedIn$.subscribe((isLoggedIn:boolean) => isLoggedIn ? this.router.navigate(['/play-game']) : null);
+		this._sub = this._isLoggedIn$.subscribe((isLoggedIn:boolean) => isLoggedIn ? this.router.navigate(['/play-game']) : this.router.navigate(['/load-game']));
 	}
 
 }
