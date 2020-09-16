@@ -1,12 +1,12 @@
 <div class="p">
-	<h1>Nová hra</h1>
+	<h1>Vytvorenie novej hry</h1>
 
-	<p>Zadaj meno svojej postavy:</p>
+	Zadaj meno svojej novej postavy:<br><br>
 
 	<form [formGroup]="loginForm">
 		<input type="text" formControlName="loginName">
 		<input type="password" formControlName="loginPassword">
 	</form>
 
-	<button (click)="login()">Prihlás</button>
+	<button (click)="create()">Vytvor novú postavu</button>
 </div>

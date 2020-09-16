@@ -4,7 +4,7 @@ import { of, EMPTY } from 'rxjs';
 import { tap, withLatestFrom, filter } from 'rxjs/operators';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { LoginService } from './../login.service';
-import { Player } from './store';
+import { ImperiumStore, Player } from './store';
 import { routerNavigatedAction, SerializedRouterStateSnapshot } from '@ngrx/router-store';
 
 @Injectable()
@@ -15,15 +15,15 @@ export class LoginEffects {
 		private action$: Actions
 	) {}
 
-	loginLoad = createEffect(() => this.action$.pipe(
-		ofType('[Login Component] Load character'),
+	characterLoad = createEffect(() => this.action$.pipe(
+		ofType('[Play game Component] Load character'),
 		mergeMap(({ login }) => this._ls.loadCharacter(login)
 			 .pipe(
 				map((isLoaded: boolean) => {
 					if(isLoaded) {
-						return { type: "[Login component] Load success", payload: character }
+						return { type: "[Play game component] Load success"}
 					} else {
-						return { type: "[Login component] Load unsuccess" }
+						return { type: "[Play game component] Load unsuccess" }
 					}
 				}),
 				catchError(() => EMPTY)
@@ -48,8 +48,24 @@ export class LoginEffects {
 	);
 
 	createCharacter = createEffect(() => this.action$.pipe(
+		ofType('[New game Component] Character create'),
+		mergeMap(({ login }) => this._ls.saveCharacter(login)
+			 .pipe(
+				map((isCreated: boolean) => {
+					if(isCreated) {
+						return { type: "[New game component] Character created" }
+					} else {
+						return { type: "[New game component] Character not created" }
+					}
+				}),
+				catchError(() => EMPTY)
+			 ))
+		)
+	);
+
+	/*createCharacter = createEffect(() => this.action$.pipe(
 		ofType('[Login Component] Login create'),
 		tap(({ login }) => this._ls.saveCharacter(login)),
-	), { dispatch: false });
+	), { dispatch: false });*/
 }
 

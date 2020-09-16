@@ -20,7 +20,6 @@ export class MainGuardGuard implements CanActivate {
 		private router: Router,
 		private _ss: SettingsService
 	) {
-		this.isLoggedIn$ = this.store.pipe(select(fromLoginSelector.selectPlayerLoggedIn));
 	}
 
 	canActivate(
@@ -35,6 +34,7 @@ export class MainGuardGuard implements CanActivate {
 					if(this._ss.loadSettings() === "true") {
 						return of(true);
 					} else {
+						console.log("Guard zabránil")
 						this.router.navigate(['']);
 						return of(false);
 					}

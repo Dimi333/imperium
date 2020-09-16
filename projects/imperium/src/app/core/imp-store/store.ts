@@ -1,5 +1,9 @@
 export interface Player {
-	loggedIn: boolean;
 	name: string;
 	password: string;
+}
+
+export interface ImperiumStore {
+	loggedIn: boolean;
+	login: Player;
 }

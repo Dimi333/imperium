@@ -1,23 +1,22 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { loginStarts, loginCreate, loginSuccess, loginUnsuccess } from './login.actions';
-import { Player } from './store';
+import { loginStarts, characterCreated, loginSuccess, loginUnsuccess } from './login.actions';
+import { ImperiumStore, Player } from './store';
 
-export const playerFeatureKey = 'login';
+export const playerFeatureKey = 'imperium';
 
-export const initialState: Player = {
+export const initialState: ImperiumStore = {
 	loggedIn: false,
-	name: "",
-	password: ""
+	login: {
+		name: "",
+		password: ""
+	}
 };
 
 export const loginReducer = createReducer(
 	initialState,
-	on(loginStarts, (state, { login }) => ({ loggedIn: true, name: login.name, password: login.password })),
-	on(loginCreate, (state, { login }) => ({ loggedIn: true, name: login.name, password: login.password })),
-	on(loginSuccess, (state, { login }) => ({ loggedIn: true, name: login.name, password: login.password })),
-	on(loginUnsuccess, (state, { login }) => ({ loggedIn: false, name: login.name, password: login.password }))
+	on(loginStarts, (state, { login }) => ({ loggedIn: false, login: { name: login.name, password: login.password }})),
 );
 
-export function reducer(state: Player | undefined, action: Action) {
+export function reducer(state: ImperiumStore | undefined, action: Action) {
 	return loginReducer(state, action);
 }

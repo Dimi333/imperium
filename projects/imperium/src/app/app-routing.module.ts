@@ -19,7 +19,7 @@ const routes: Routes = [
 		path: 'play-game',
 		loadChildren: () => import('./play-game/play-game.module').then(m => m.PlayGameModule),
 		component: GameLayoutComponent,
-		canActivate: [MainGuardGuard]
+		// canActivate: [MainGuardGuard]
 	},
 	{
 		path: 'load-game',

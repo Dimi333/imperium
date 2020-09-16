@@ -9,11 +9,11 @@ export class LoginService {
 
   constructor() { }
 
-  public saveCharacter(char: Player): Observable<Player> {
+  public saveCharacter(char: Player): Observable<boolean> {
 	  localStorage.setItem("name", char.name);
 	  localStorage.setItem("password", char.password);
 
-	  return of(char);
+	  return of(true);
   }
 
   public loadCharacter(char: Player): Observable<boolean> {

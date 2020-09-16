@@ -1,19 +1,15 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { playerFeatureKey } from './login.reducer';
-import { Player } from './store';
+import { ImperiumStore, Player } from './store';
 
-export interface AppState {
-	login: Player
-}
-
-export const selectFeature = createFeatureSelector<Player>('login');
+export const selectFeature = createFeatureSelector<ImperiumStore>(playerFeatureKey);
 
 export const selectPlayerName = createSelector(
 	selectFeature,
-	(state: Player) => state.name
+	(state: ImperiumStore) => state.login.name
 );
 
 export const selectPlayerLoggedIn = createSelector(
 	selectFeature,
-	(state: Player) => state.loggedIn
+	(state: ImperiumStore) => state.loggedIn
 );

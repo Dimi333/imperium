@@ -1,4 +1,4 @@
-import * as fromRouter from '@ngrx/router-store';
+/*import * as fromRouter from '@ngrx/router-store';
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 export interface State {
@@ -20,4 +20,4 @@ export const {
 	selectRouterData,
 	selectUrl,
 } = fromRouter.getSelectors(selectRouter);
-
+*/
