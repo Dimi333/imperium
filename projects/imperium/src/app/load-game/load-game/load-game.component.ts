@@ -59,8 +59,6 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 		const login: Player = { name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
 
 		this.store.dispatch(loginStarts({ login: login }));
-
-		this._sub = this._isLoggedIn$.subscribe((isLoggedIn:boolean) => isLoggedIn ? this.router.navigate(['/play-game']) : this.router.navigate(['/load-game']));
 	}
 
 }

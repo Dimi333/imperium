@@ -26,20 +26,6 @@ export class MainGuardGuard implements CanActivate {
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
 	): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-		return this.isLoggedIn$.pipe(
-			switchMap((val: boolean) => {
-				if(val) {
-					return of(true);
-				} else {
-					if(this._ss.loadSettings() === "true") {
-						return of(true);
-					} else {
-						console.log("Guard zabránil")
-						this.router.navigate(['']);
-						return of(false);
-					}
-				}
-			})
-		);
+		return of(true);
 	}
 }

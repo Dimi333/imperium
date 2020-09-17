@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { playerFeatureKey } from './login.reducer';
 import { ImperiumStore, Player } from './store';
+import { playerFeatureKey } from './store';
 
 export const selectFeature = createFeatureSelector<ImperiumStore>(playerFeatureKey);
 

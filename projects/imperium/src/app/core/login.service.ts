@@ -20,6 +20,8 @@ export class LoginService {
 	  const password = localStorage.getItem("password");
 	  const name = localStorage.getItem("name");
 
+	  localStorage.setItem("token", JSON.stringify({name, password}));
+
 	  if(char.name === name && char.password === password) {
 		return of(true);
 	  } else {

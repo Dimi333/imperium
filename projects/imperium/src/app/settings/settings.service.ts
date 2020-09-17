@@ -15,7 +15,23 @@ export class SettingsService {
 	}
   }
 
-  public loadSettings(): any {
-	return localStorage.getItem("doNotLogout");
+  public loadSettings(): string {
+	let settings = localStorage.getItem("doNotLogout");
+
+	if(!settings) {
+		settings = ""; 
+	}
+
+	return settings;
+  }
+
+  public returnSettings(): string {
+	let settings = localStorage.getItem("doNotLogout");
+
+	if(!settings) {
+		settings = ""; 
+	}
+
+	return settings;
   }
 }

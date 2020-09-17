@@ -1,16 +1,6 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { loginStarts, characterCreated, loginSuccess, loginUnsuccess } from './login.actions';
-import { ImperiumStore, Player } from './store';
-
-export const playerFeatureKey = 'imperium';
-
-export const initialState: ImperiumStore = {
-	loggedIn: false,
-	login: {
-		name: "",
-		password: ""
-	}
-};
+import { ImperiumStore, initialState } from './store';
 
 export const loginReducer = createReducer(
 	initialState,
