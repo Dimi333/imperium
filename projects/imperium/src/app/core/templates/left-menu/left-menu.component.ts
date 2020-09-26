@@ -14,8 +14,8 @@ export class LeftMenuComponent implements OnInit, OnDestroy {
 	public isLoggedIn$: Observable<boolean>;
 	private _sub: Subscription;
 
-	constructor(private store: Store<Player>, private router: Router) {
-		this.isLoggedIn$ = this.store.pipe(select(fromLoginSelector.selectPlayerLoggedIn));
+	constructor(private router: Router) {
+		// this.isLoggedIn$ = this.store.pipe(select(fromLoginSelector.selectPlayerLoggedIn));
 	}
 
 	ngOnInit(): void {

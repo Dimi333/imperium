@@ -10,7 +10,7 @@ export const loginStarts = createAction('[Login Component] Login starts', props<
 export const loginSuccess = createAction('[Login Component] Login success', props<{ loggedIn: boolean }>());
 export const loginUnsuccess = createAction('[Login Component] Login unsuccess', props<{ loggedIn: boolean }>());
 
-// hranie hry - načítanie postavy
+// hranie hry - načítanie postavy - použije token na zistenie, kto to je
 export const characterLoad = createAction('[Play game Component] Character load');
 
 

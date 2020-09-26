@@ -25,11 +25,11 @@ export class NewGameComponent implements OnInit, OnDestroy {
 	});
 
 	constructor(
-		private store: Store<ImperiumStore>,
-		private updates$: ActionsSubject,
+		// private store: Store<ImperiumStore>,
+		// private updates$: ActionsSubject,
 		private _router: Router
 	) {
-		updates$.pipe(
+		/*updates$.pipe(
 			ofType('[New game component] Character created'),
 			takeUntil(this._destroyed$),
 			tap(() => this._router.navigate(['/load-game']))
@@ -41,7 +41,7 @@ export class NewGameComponent implements OnInit, OnDestroy {
 			takeUntil(this._destroyed$),
 			tap(() => alert("Niečo sa pokazilo"))
 		)
-		.subscribe();
+		.subscribe();*/
 	}
 
 	ngOnInit(): void {
@@ -54,6 +54,6 @@ export class NewGameComponent implements OnInit, OnDestroy {
 
 	public create():void {
 		const login = { name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
-		this.store.dispatch(characterCreate({ login: login }));
+		// this.store.dispatch(characterCreate({ login: login }));
 	}
 }

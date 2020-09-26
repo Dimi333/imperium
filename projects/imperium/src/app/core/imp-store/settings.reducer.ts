@@ -1,8 +1,12 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { loadSettings } from './settings.actions';
-import { ImperiumStore, Player, initialState } from './store';
+import { ImperiumStore, Player, Settings, initialState } from './store';
 
 export const settingsReducer = createReducer(
 	initialState,
-	on(loadSettings, (state, { settings }) => ({ settings: { doNotLogout: settings }})),
+	on(loadSettings, (state, { settings }) => ({ doNotLogout: settings })),
 );
+
+export function reducer(state: ImperiumStore, action: Action) {
+	return settingsReducer(state, action);
+}

@@ -8,7 +8,6 @@ export interface Settings {
 }
 
 export interface ImperiumStore {
-	loggedIn: boolean;
 	login: Player;
 	settings: Settings;
 }
@@ -16,10 +15,9 @@ export interface ImperiumStore {
 export const playerFeatureKey = 'imperium';
 
 export const initialState: ImperiumStore = {
-	loggedIn: false,
 	login: {
 		name: "",
-		password: ""
+		password: "",
 	},
 	settings: {
 		doNotLogout: false

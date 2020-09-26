@@ -126,9 +126,11 @@
           }
         }
       }
-    }},
+    }
+  },
   "cli": {
-    "analytics": "dd2e8f49-376a-4a07-a443-67e83d60d467"
+    "analytics": "dd2e8f49-376a-4a07-a443-67e83d60d467",
+    "defaultCollection": "@ngrx/schematics"
   },
   "defaultProject": "imperium"
 }

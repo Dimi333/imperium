@@ -26,13 +26,12 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 	});
 	
 	constructor(
-		private store: Store<Player>,
 		private router: Router,
-		private updates$: ActionsSubject,
+		// private updates$: ActionsSubject,
 	) { 
-		this._isLoggedIn$ = this.store.pipe(select(fromLoginSelector.selectPlayerLoggedIn));
+		// this._isLoggedIn$ = this.store.pipe(select(fromLoginSelector.selectPlayerLoggedIn));
 
-		updates$.pipe(
+		/*updates$.pipe(
 			ofType('[Login component] Login success'),
 			takeUntil(this._destroyed$),
 			tap(() => this.router.navigate(['/play-game']))
@@ -44,7 +43,7 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 			takeUntil(this._destroyed$),
 			tap(() => alert("Nejde prihlásiť"))
 		)
-		.subscribe();
+		.subscribe();*/
 	}
 
 	ngOnInit(): void {
@@ -58,7 +57,7 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 	public login():void {
 		const login: Player = { name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
 
-		this.store.dispatch(loginStarts({ login: login }));
+		// this.store.dispatch(loginStarts({ login: login }));
 	}
 
 }

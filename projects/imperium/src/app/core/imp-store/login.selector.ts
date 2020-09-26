@@ -9,7 +9,7 @@ export const selectPlayerName = createSelector(
 	(state: ImperiumStore) => state.login.name
 );
 
-export const selectPlayerLoggedIn = createSelector(
+/*export const selectPlayerLoggedIn = createSelector(
 	selectFeature,
 	(state: ImperiumStore) => state.loggedIn
-);
+);*/
