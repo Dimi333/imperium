@@ -7,6 +7,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
+import * as fromLoadGameSelector from './../selectors/load-game.selectors';
+import * as LoadGameActions from './../actions/load-game.actions';
 
 @Component({
   selector: 'imp-load-game',
@@ -15,7 +17,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 })
 export class LoadGameComponent implements OnInit, OnDestroy {
 	private _destroyed$ = new Subject<boolean>();
-	private _isLoggedIn$: Observable<boolean>;
+	private _isLoggedIn$: Observable<any>;
 	private _sub: Subscription;
 	public loginForm: FormGroup = new FormGroup({
 		loginName: new FormControl(''),
@@ -24,9 +26,11 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 	
 	constructor(
 		private router: Router,
-		// private updates$: ActionsSubject,
+		private updates$: ActionsSubject,
+		private store: Store
 	) { 
-		// this._isLoggedIn$ = this.store.pipe(select(fromLoginSelector.selectPlayerLoggedIn));
+		this._isLoggedIn$ = this.store.pipe(select(fromLoadGameSelector.selectIsLoggedIn));
+		this._isLoggedIn$.subscribe(val => console.log(val))
 
 		/*updates$.pipe(
 			ofType('[Login component] Login success'),
@@ -54,7 +58,7 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 	public login():void {
 		const login = { name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
 
-		// this.store.dispatch(loginStarts({ login: login }));
+		this.store.dispatch(LoadGameActions.loadLoadGames({data: login}));
 	}
 
 }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
+import { NewGameService } from './../new-game.service';
+import { Character } from './../new-game.service';
 
 import * as NewGameActions from '../actions/new-game.actions';
 
@@ -14,9 +16,9 @@ export class NewGameEffects {
     return this.actions$.pipe( 
 
       ofType(NewGameActions.loadNewGames),
-      concatMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
+      concatMap((data: any) => 
+	this.ngs.createNewGame(data)
+	.pipe(
           map(data => NewGameActions.loadNewGamesSuccess({ data })),
           catchError(error => of(NewGameActions.loadNewGamesFailure({ error }))))
       )
@@ -25,6 +27,9 @@ export class NewGameEffects {
 
 
 
-  constructor(private actions$: Actions) {}
+  constructor(
+	  private ngs: NewGameService,
+	  private actions$: Actions
+  ) {}
 
 }

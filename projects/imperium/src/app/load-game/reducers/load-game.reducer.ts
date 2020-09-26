@@ -16,7 +16,7 @@ export const reducer = createReducer(
   initialState,
 
   on(LoadGameActions.loadLoadGames, state => state),
-  on(LoadGameActions.loadLoadGamesSuccess, (state, action) => state),
+  on(LoadGameActions.loadLoadGamesSuccess, (state, action) => { return { token: action.data }}),
   on(LoadGameActions.loadLoadGamesFailure, (state, action) => state),
 
 );

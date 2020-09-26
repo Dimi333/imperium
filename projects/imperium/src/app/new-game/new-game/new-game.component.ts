@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { StoreModule, Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActionsSubject } from '@ngrx/store';
@@ -7,6 +7,7 @@ import { ofType } from '@ngrx/effects';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import * as NewGameActions from './../actions/new-game.actions';
 
 @Component({
 	selector: 'imp-new-game',
@@ -21,23 +22,23 @@ export class NewGameComponent implements OnInit, OnDestroy {
 	});
 
 	constructor(
-		// private store: Store<ImperiumStore>,
-		// private updates$: ActionsSubject,
-		private _router: Router
+		private store: Store<Store>,
+		private _router: Router,
+		private updates$: ActionsSubject
 	) {
-		/*updates$.pipe(
-			ofType('[New game component] Character created'),
+		updates$.pipe(
+			ofType('[NewGame] Load NewGames Success'),
 			takeUntil(this._destroyed$),
 			tap(() => this._router.navigate(['/load-game']))
 		)
 		.subscribe();
 
 		updates$.pipe(
-			ofType('[New game component] Character not created'),
+			ofType('[NewGame] Load NewGames Failure'),
 			takeUntil(this._destroyed$),
 			tap(() => alert("Niečo sa pokazilo"))
 		)
-		.subscribe();*/
+		.subscribe();
 	}
 
 	ngOnInit(): void {
@@ -50,6 +51,6 @@ export class NewGameComponent implements OnInit, OnDestroy {
 
 	public create():void {
 		const login = { name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
-		// this.store.dispatch(characterCreate({ login: login }));
+		this.store.dispatch(NewGameActions.loadNewGames({data: login}));
 	}
 }
