@@ -1,15 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 
-export const loadSettingss = createAction(
-  '[Settings] Load Settingss'
+export const loadSettings = createAction(
+  '[Settings] Load Settings'
 );
 
-export const loadSettingssSuccess = createAction(
-  '[Settings] Load Settingss Success',
-  props<{ data: any }>()
+export const loadSettingsSuccess = createAction(
+  '[Settings] Load Settings Success',
+  props<{ data: boolean }>()
 );
 
-export const loadSettingssFailure = createAction(
-  '[Settings] Load Settingss Failure',
+export const loadSettingsFailure = createAction(
+  '[Settings] Load Settings Failure',
   props<{ error: any }>()
 );

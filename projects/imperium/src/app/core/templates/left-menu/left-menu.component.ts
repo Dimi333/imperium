@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { Player } from './../../imp-store/store';
-import * as fromLoginSelector from './../../imp-store/login.selector';
 
 @Component({
   selector: 'imp-left-menu',

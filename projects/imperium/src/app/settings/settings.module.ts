@@ -8,7 +8,8 @@ import { StoreModule } from '@ngrx/store';
 import * as fromSettings from './reducers/settings.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SettingsEffects } from './effects/settings.effects';
-
+import { Store } from '@ngrx/store';
+import * as SettingsActions from './actions/settings.actions';
 
 @NgModule({
   declarations: [SettingsComponent],
@@ -21,4 +22,10 @@ import { SettingsEffects } from './effects/settings.effects';
     EffectsModule.forFeature([SettingsEffects])
   ]
 })
-export class SettingsModule { }
+export class SettingsModule {
+	constructor(
+		private store: Store
+	) {
+		this.store.dispatch(SettingsActions.loadSettings());
+	}
+}

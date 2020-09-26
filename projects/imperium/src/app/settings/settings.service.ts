@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs'; 
+import { Store } from '@ngrx/store';
+import * as SettingsActions from './actions/settings.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
 
-  constructor() { }
+  constructor(
+	private store: Store
+  ) { }
 
   public saveSetting(setting: string, value: any): void {
 	switch(setting) {
@@ -13,16 +18,18 @@ export class SettingsService {
 			localStorage.setItem("doNotLogout", value);
 			break;
 	}
+
+	this.store.dispatch(SettingsActions.loadSettings());
   }
 
-  public loadSettings(): string {
+  public loadSettings(): Observable<boolean> {
 	let settings = localStorage.getItem("doNotLogout");
 
 	if(!settings) {
-		settings = ""; 
+		settings = 'false'
 	}
 
-	return settings;
+	return of(settings === 'true' ? true : false);
   }
 
   public returnSettings(): string {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as SettingsActions from './../../../settings/actions/settings.actions';
 
 @Component({
   selector: 'imp-main-layout',

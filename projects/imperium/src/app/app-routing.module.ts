@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './core/templates/main-layout/main-layout.component';
 import { GameLayoutComponent } from './core/templates/game-layout/game-layout.component';
 import { MainGuardGuard } from './core/main-guard.guard';
+import { PreloadSelectedModulesList } from './core/preload-selected-modules-list';
 
 const routes: Routes = [
 	{
@@ -34,7 +35,8 @@ const routes: Routes = [
 	{
 		path: 'settings',
 		loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule),
-		component: MainLayoutComponent
+		component: MainLayoutComponent,
+		data: { preload: true }
 	},
 	{
 		path: 'about',
@@ -49,7 +51,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+				 {preloadingStrategy: PreloadSelectedModulesList})],
+  providers: [PreloadSelectedModulesList],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -4,20 +4,19 @@ import * as SettingsActions from '../actions/settings.actions';
 export const settingsFeatureKey = 'settings';
 
 export interface State {
-
+	doNotLogout: boolean
 }
 
 export const initialState: State = {
-
+	doNotLogout: false
 };
 
 
 export const reducer = createReducer(
   initialState,
 
-  on(SettingsActions.loadSettingss, state => state),
-  on(SettingsActions.loadSettingssSuccess, (state, action) => state),
-  on(SettingsActions.loadSettingssFailure, (state, action) => state),
-
+  on(SettingsActions.loadSettings, state => state),
+  on(SettingsActions.loadSettingsSuccess, (state, action) => { return { doNotLogout: action.data }}),
+  on(SettingsActions.loadSettingsFailure, (state, action) => state),
 );
 

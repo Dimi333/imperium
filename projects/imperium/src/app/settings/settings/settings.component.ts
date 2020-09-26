@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';	
 import { SettingsService } from './../settings.service';
-import { Subscription  } from 'rxjs';
-import { skip } from 'rxjs/operators';
+import { Subscription, Observable } from 'rxjs';
+import { skip, last } from 'rxjs/operators';
 
 @Component({
   selector: 'imp-settings',
@@ -11,7 +11,8 @@ import { skip } from 'rxjs/operators';
 })
 export class SettingsComponent implements OnInit, OnDestroy {
 	private _sub: Subscription;
-	private settings: any;
+	private _sub2: Subscription;
+	private settings$: Observable<boolean>;
 	public settingsForm: FormGroup = new FormGroup({
 		doNotLogout: new FormControl(false)
 	});
@@ -21,17 +22,21 @@ export class SettingsComponent implements OnInit, OnDestroy {
 	) { }
 
 	ngOnInit(): void {
-		this.settings = this._ss.loadSettings();
-		this.settingsForm.get("doNotLogout")?.patchValue((this.settings === "true"));
-
 		this._sub = this.settingsForm.valueChanges.subscribe((val: any) => {
 			this._ss.saveSetting("doNotLogout", val.doNotLogout);
 		});
 
 	}
+
+	ngAfterContentInit(): void {
+		this._sub2 = this._ss.loadSettings().pipe(last()).subscribe((val: boolean) => {
+			this.settingsForm.get("doNotLogout")?.patchValue((val));
+		});
+	}
 	
 	ngOnDestroy(): void {
-		this._sub.unsubscribe();
+		this._sub?.unsubscribe();
+		this._sub2?.unsubscribe();
 	}
 
 	public onSubmit(): void {}

@@ -3,10 +3,7 @@ import { ofType } from '@ngrx/effects';
 import { ActionsSubject } from '@ngrx/store';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { loginStarts } from './../../core/imp-store/login.actions';
 import { FormControl, FormGroup } from '@angular/forms';
-import * as fromLoginSelector from './../../core/imp-store/login.selector';
-import { Player } from './../../core/imp-store/store';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
@@ -55,7 +52,7 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 	}
 
 	public login():void {
-		const login: Player = { name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
+		const login = { name: this.loginForm.get("loginName")?.value, password: this.loginForm.get("loginPassword")?.value };
 
 		// this.store.dispatch(loginStarts({ login: login }));
 	}
