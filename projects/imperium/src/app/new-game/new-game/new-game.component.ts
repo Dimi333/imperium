@@ -26,14 +26,14 @@ export class NewGameComponent implements OnInit, OnDestroy {
 		private _router: Router,
 		private updates$: ActionsSubject
 	) {
-		updates$.pipe(
+		this.updates$.pipe(
 			ofType('[NewGame] Load NewGames Success'),
 			takeUntil(this._destroyed$),
 			tap(() => this._router.navigate(['/load-game']))
 		)
 		.subscribe();
 
-		updates$.pipe(
+		this.updates$.pipe(
 			ofType('[NewGame] Load NewGames Failure'),
 			takeUntil(this._destroyed$),
 			tap(() => alert("Niečo sa pokazilo"))

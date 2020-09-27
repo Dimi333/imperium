@@ -32,19 +32,19 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 		this._isLoggedIn$ = this.store.pipe(select(fromLoadGameSelector.selectIsLoggedIn));
 		this._isLoggedIn$.subscribe(val => console.log(val))
 
-		/*updates$.pipe(
-			ofType('[Login component] Login success'),
+		this.updates$.pipe(
+			ofType('[LoadGame] Load LoadGames Success'),
 			takeUntil(this._destroyed$),
 			tap(() => this.router.navigate(['/play-game']))
 		)
 		.subscribe();
 
-		updates$.pipe(
-			ofType('[Login component] Login unsuccess'),
+		this.updates$.pipe(
+			ofType('[LoadGame] Load LoadGames Failure'),
 			takeUntil(this._destroyed$),
 			tap(() => alert("Nejde prihlásiť"))
 		)
-		.subscribe();*/
+		.subscribe();
 	}
 
 	ngOnInit(): void {

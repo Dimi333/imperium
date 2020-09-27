@@ -17,7 +17,7 @@ export class NewGameEffects {
 
       ofType(NewGameActions.loadNewGames),
       concatMap((data: any) => 
-	this.ngs.createNewGame(data)
+	this.ngs.createNewGame(data.data)
 	.pipe(
           map(data => NewGameActions.loadNewGamesSuccess({ data })),
           catchError(error => of(NewGameActions.loadNewGamesFailure({ error }))))

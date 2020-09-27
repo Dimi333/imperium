@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';	
 import { SettingsService } from './../settings.service';
-import { Subscription, Observable } from 'rxjs';
-import { skip, last } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { last } from 'rxjs/operators';
 
 @Component({
   selector: 'imp-settings',
@@ -12,7 +12,6 @@ import { skip, last } from 'rxjs/operators';
 export class SettingsComponent implements OnInit, OnDestroy {
 	private _sub: Subscription;
 	private _sub2: Subscription;
-	private settings$: Observable<boolean>;
 	public settingsForm: FormGroup = new FormGroup({
 		doNotLogout: new FormControl(false)
 	});

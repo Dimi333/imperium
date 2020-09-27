@@ -16,7 +16,7 @@ export class LoadGameEffects {
 
       ofType(LoadGameActions.loadLoadGames),
       concatMap((data: any) =>
-	this.lgs.loadGame(data)
+	this.lgs.loadGame(data.data)
 	.pipe(
           map(data => LoadGameActions.loadLoadGamesSuccess({ data })),
           catchError(error => of(LoadGameActions.loadLoadGamesFailure({ error })))
