@@ -1,3 +1,4 @@
+@import "node_modules/rpg-awesome/scss/rpg-awesome"
 /* You can add global styles to this file, and also import other style files */
 html
   background: black
@@ -86,3 +87,17 @@ input[type="text"], input[type="password"]
   background: black
   padding: 10px
   color: white
+
+.times
+  font-family: times
+
+.blink
+  animation: blink 1s steps(1, end) infinite
+
+@keyframes blink
+  0%
+    opacity: 1
+  50%
+    opacity: 0
+  100%
+    opacity: 1

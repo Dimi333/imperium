@@ -19,7 +19,7 @@ export class PlayGameService {
   }
 
   loadCharacter(): Observable<Character> {
-	  const char: Character = {name: "Dimi3", position: "doma"};
+	  const char: Character = {name: "Dimi3", position: "trhovisko"};
 
 	  return of(char);
   }

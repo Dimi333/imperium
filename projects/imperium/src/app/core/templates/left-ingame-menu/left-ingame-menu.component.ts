@@ -19,6 +19,7 @@ export class LeftIngameMenuComponent implements OnInit {
 			this.router.navigate(['/welcome-screen']);
 			break;
 		default:
+			this.router.navigate(['/play-game/' + destination]);
 			break;
 	}
   }
