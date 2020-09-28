@@ -7,7 +7,7 @@ import { PreloadSelectedModulesList } from './core/preload-selected-modules-list
 
 const routes: Routes = [
 	{
-		path: '',
+		path: 'welcome',
 		loadChildren: () => import('./welcome-screen/welcome-screen.module').then(m => m.WelcomeScreenModule),
 		component: MainLayoutComponent
 	},
@@ -20,7 +20,7 @@ const routes: Routes = [
 		path: 'play-game',
 		loadChildren: () => import('./play-game/play-game.module').then(m => m.PlayGameModule),
 		component: GameLayoutComponent,
-		// canActivate: [MainGuardGuard]
+		canActivate: [MainGuardGuard]
 	},
 	{
 		path: 'load-game',
@@ -44,9 +44,13 @@ const routes: Routes = [
 		component: MainLayoutComponent
 	},
 	{
-		path: '**',
-		redirectTo: '',
+		path: '',
+		redirectTo: '/welcome',
 		pathMatch: 'full'
+	},
+	{
+		path: '**',
+		redirectTo: '/welcome',
 	}
 ];
 

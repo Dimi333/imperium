@@ -4,11 +4,11 @@ import * as LoadGameActions from '../actions/load-game.actions';
 export const loadGameFeatureKey = 'loadGame';
 
 export interface State {
-
+	token: string;
 }
 
 export const initialState: State = {
-
+	token: ""
 };
 
 

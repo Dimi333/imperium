@@ -29,9 +29,6 @@ export class LoadGameComponent implements OnInit, OnDestroy {
 		private updates$: ActionsSubject,
 		private store: Store
 	) { 
-		this._isLoggedIn$ = this.store.pipe(select(fromLoadGameSelector.selectIsLoggedIn));
-		this._isLoggedIn$.subscribe(val => console.log(val))
-
 		this.updates$.pipe(
 			ofType('[LoadGame] Load LoadGames Success'),
 			takeUntil(this._destroyed$),

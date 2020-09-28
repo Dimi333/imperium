@@ -5,7 +5,7 @@ export const selectLoadGameState = createFeatureSelector<fromLoadGame.State>(
   fromLoadGame.loadGameFeatureKey
 );
 
-export const selectIsLoggedIn = createSelector(
+export const selectToken = createSelector(
 	selectLoadGameState,
-	(state: fromLoadGame.State) => state
+	(state: fromLoadGame.State) => state?.token 
 );
