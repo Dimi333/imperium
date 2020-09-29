@@ -1,11 +1,11 @@
 {
   "name": "imperium",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build-pi": "ng build --prod --base-href=/imperium/",
+    "build": "npm --no-git-tag-version version patch && ng build",
+    "build-pi": "npm --no-git-tag-version version patch && ng build --prod --base-href=/imperium/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
