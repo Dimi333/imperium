@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { SettingsService } from './../settings/settings.service';
 import * as fromLoadGame from './../load-game/selectors/load-game.selectors';
+import * as fromSettingsSelector from './../settings/selectors/settings.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +26,12 @@ export class MainGuardGuard implements CanActivate {
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
 	): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-		return this.store.pipe(
-			select(fromLoadGame.selectToken),
-			map(val => {
-				if(typeof val !== 'undefined') {
-					return true;
-				} else {
-					return this.router.parseUrl('/');
-				}
-			})
-		);
+		const token = localStorage.getItem("token");
+
+		if(token) {
+			return of(true);
+		} else {
+			return of(false);
+		}
 	}
 }

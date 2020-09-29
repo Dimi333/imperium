@@ -17,6 +17,7 @@ export class LoadGameService {
 		const password = localStorage.getItem(data.password);
 		
 		if(name && password) {
+			localStorage.setItem("token", "tokenasjkfôljf4Q3RQ34W5RFfrefsdjo");
 			return of("TokenSDFSDF43RQ4RFčťdsfkaskfjjfreG");
 		} else {
 			return throwError("");

@@ -16,6 +16,7 @@ export class NewGameService {
 		console.log(data)
 		localStorage.setItem(data.name, data.name);
 		localStorage.setItem(data.password, data.password);
+		localStorage.setItem("token", "tokenasjkfôljf4Q3RQ34W5RFfrefsdjo");
 
 		// toto pôjde na server aby uložilo novú postavu
 		return of("tokenasjkfôljf4Q3RQ34W5RFfrefsdjo");

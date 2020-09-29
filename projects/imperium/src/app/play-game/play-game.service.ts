@@ -23,4 +23,8 @@ export class PlayGameService {
 
 	  return of(char);
   }
+
+  loadToken(): string {
+	return localStorage.getItem("token");
+  }
 }
