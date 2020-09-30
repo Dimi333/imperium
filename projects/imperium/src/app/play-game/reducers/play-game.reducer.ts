@@ -26,6 +26,7 @@ export const reducer = createReducer(
   on(PlayGameActions.loadPlayGames, state => state),
   on(PlayGameActions.loadPlayGamesSuccess, (state, action) => { return { character: action.data }}),
   on(PlayGameActions.loadPlayGamesFailure, (state, action) => state),
+  // on(PlayGameActions.buyItemSuccess, (state, action) => { return { character: action.data }}),
 
 );
 

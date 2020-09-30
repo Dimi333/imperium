@@ -1,5 +1,12 @@
 <div class="body">
 	<div class="content">
+		<div id="leftMenu">
+			<b>Inventár</b><br>
+			<p *ngFor="let item of characterInventory$ | async">{{ item.name }}</p>
+			<small>Zl: {{ (characterMoney$ | async)?.gold }}</small>
+			<small> St: {{ (characterMoney$ | async)?.silver }}</small>
+			<small> Br: {{ (characterMoney$ | async)?.bronze }}</small>
+		</div>
 		<imp-ingame-left-menu></imp-ingame-left-menu>
 		<router-outlet></router-outlet>
 	</div>
