@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SettingsService } from './../settings/settings.service';
 import { Observable, of } from 'rxjs';
-import * as model from './../core/model';
+import * as fromModel from './../core/model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,27 +14,10 @@ export class PlayGameService {
 	const settings = this.settings.returnSettings();
   }
 
-  loadCharacter(): Observable<model.Character> {
-	  const char: model.Character = {
+  loadCharacter(): Observable<fromModel.Character> {
+	  const char: fromModel.Character = {
 		  name: "Dimi3",
-		  position: "trhovisko",
-		  inventory: [
-			  {
-				name: "Nožík",
-				id: 1,
-				weight: 30,
-			  },
-			  {
-				name: "Kožené rukavice",
-				id: 2,
-				weight: 12
-			  },
-			  {
-				name: ".44 náboje",
-				id: 3,
-				weight: 20
-			  }
-		  ],
+		  position: "trhovisko", 
 		  money: {
 			  gold: 0,
 			  silver: 0,
@@ -45,8 +28,30 @@ export class PlayGameService {
 	  return of(char);
   }
 
+  loadInventory(): Observable<fromModel.Inventory> {
+	const inventory = [
+		  {
+			name: "Nožík",
+			id: 1,
+			weight: 30,
+		  },
+		  {
+			name: "Kožené rukavice",
+			id: 2,
+			weight: 12
+		  },
+		  {
+			name: ".44 náboje",
+			id: 3,
+			weight: 20
+		  }
+	];
+
+	return of(inventory);
+  }
+
   loadToken(): string {
-	  const token =localStorage.getItem("token"); 
+	  const token = localStorage.getItem("token"); 
 
 	  if(token) {
 		return token;
@@ -55,7 +60,13 @@ export class PlayGameService {
 	  }
   }
 
-  public buyItem(id: number): Observable<boolean> {
-	return of(true);
+  public buyItem(id: number): Observable<fromModel.Item> {
+	  const item: fromModel.Item = {
+		name: "Podkova",
+		id: 3,
+		weight: 25
+	  };
+
+	return of(item);
   }
 }

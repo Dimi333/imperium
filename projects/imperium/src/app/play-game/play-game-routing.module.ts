@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { PlayGameComponent } from './play-game/play-game.component';
 import { CharacterComponent } from './character/character.component';
 import { MapComponent } from './map/map.component';
 import { QuestsComponent } from './quests/quests.component';

@@ -17,6 +17,5 @@ export interface Money {
 export interface Character {
 	name: string
 	position: string,
-	inventory: Inventory,
 	money: Money
 }

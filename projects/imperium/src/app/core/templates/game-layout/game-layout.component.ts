@@ -18,7 +18,7 @@ export class GameLayoutComponent implements OnInit {
 
   ngOnInit(): void {
 	this.store.dispatch(fromPlayGameActions.loadPlayGames());
-	this.characterInventory$ = this.store.select(fromPlayGameSelect.selectCharacterInventory);
+	this.characterInventory$ = this.store.select(fromPlayGameSelect.selectInventory);
 	this.characterMoney$ = this.store.select(fromPlayGameSelect.selectCharacterMoney);
   }
 

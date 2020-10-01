@@ -14,6 +14,20 @@ export const loadPlayGamesFailure = createAction(
   props<{ error: any }>()
 );
 
+export const loadInventory = createAction(
+  '[PlayGame] Load Inventory'
+);
+
+export const loadInventorySuccess = createAction(
+  '[PlayGame] Load Inventory Success',
+  props<{ data: any }>()
+);
+
+export const loadInventoryFailure = createAction(
+  '[PlayGame] Load Inventory Failure',
+  props<{ error: any }>()
+);
+
 export const buyItem = createAction(
   '[PlayGame] Buy item',
   props<{ data: any }>()

@@ -9,11 +9,11 @@ export const selectPlayGameState = createFeatureSelector<fromPlayGame.State>(
 export const selectCharacter = createSelector(
   selectPlayGameState,
   (state: fromPlayGame.State) => state.character
-);
+)
 
-export const selectCharacterInventory = createSelector(
-  selectCharacter,
-  (state: fromModel.Character) => state.inventory
+export const selectInventory = createSelector(
+  selectPlayGameState,
+  (state: fromPlayGame.State) => state.inventory
 );
 
 export const selectCharacterMoney = createSelector(
