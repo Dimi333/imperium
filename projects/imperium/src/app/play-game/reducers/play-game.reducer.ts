@@ -32,6 +32,11 @@ export const reducer = createReducer(
   on(PlayGameActions.loadInventory, state => state),
   on(PlayGameActions.loadInventorySuccess, (state, action) => { return { ...state, inventory: [...action.data] }}),
   on(PlayGameActions.loadInventoryFailure, (state, action) => state),
-  on(PlayGameActions.buyItemSuccess, (state, action) => { return { ...state, inventory: [...state.inventory, action.data] }} )
+  on(PlayGameActions.buyItemSuccess, (state: State, action) => 
+     { 
+	     // @ts-ignore
+	     return { character: { ...state.character}, inventory: [...state.inventory, action.data]};
+     } 
+    )
 );
 

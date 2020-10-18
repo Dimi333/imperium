@@ -4,18 +4,18 @@ export interface Item {
 	weight: number
 }
 
-export interface Inventory {
-	[index: number]: Item
-}
-
 export interface Money {
 	gold: number,
 	silver: number,
 	bronze: number
 }
 
+export interface Inventory {
+	[index: number]: Item
+} 
+
 export interface Character {
 	name: string
 	position: string,
-	money: Money
+	money: Money,
 }
